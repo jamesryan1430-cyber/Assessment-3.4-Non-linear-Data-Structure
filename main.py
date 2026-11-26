@@ -1,14 +1,7 @@
-"""
-Assessment 3.3: Non-linear Data Structure
-Builds a binary tree and a graph from your last name,
-then shows BFS and DFS traversals for both.
-"""
+
 from collections import deque
 
 
-# ---------------------------------------------------------------
-# BINARY TREE
-# ---------------------------------------------------------------
 class Node:
     def __init__(self, value):
         self.value = value
@@ -17,7 +10,7 @@ class Node:
 
 
 def build_tree(letters):
-    """Insert letters level by level, left to right (complete binary tree)."""
+
     if not letters:
         return None
     root = Node(letters[0])
@@ -36,7 +29,7 @@ def build_tree(letters):
 
 
 def tree_bfs(root):
-    """Level-order traversal (uses a queue)."""
+
     result, queue = [], deque([root] if root else [])
     while queue:
         node = queue.popleft()
@@ -48,7 +41,7 @@ def tree_bfs(root):
     return result
 
 
-def preorder(node, out):   # Root -> Left -> Right
+def preorder(node, out):
     if node:
         out.append(node.value)
         preorder(node.left, out)
@@ -56,7 +49,7 @@ def preorder(node, out):   # Root -> Left -> Right
     return out
 
 
-def inorder(node, out):    # Left -> Root -> Right
+def inorder(node, out):
     if node:
         inorder(node.left, out)
         out.append(node.value)
@@ -64,7 +57,7 @@ def inorder(node, out):    # Left -> Root -> Right
     return out
 
 
-def postorder(node, out):  # Left -> Right -> Root
+def postorder(node, out):
     if node:
         postorder(node.left, out)
         postorder(node.right, out)
@@ -72,15 +65,8 @@ def postorder(node, out):  # Left -> Right -> Root
     return out
 
 
-# ---------------------------------------------------------------
-# GRAPH (undirected, adjacency list)
-# ---------------------------------------------------------------
 def build_graph(letters):
-    """
-    Vertices = unique letters (in order of appearance).
-    Edges   = each letter connected to the next letter in the name.
-    Edit `edges` below if your instructor wants different connections.
-    """
+
     graph = {}
     for ch in letters:
         graph.setdefault(ch, [])
@@ -95,7 +81,7 @@ def build_graph(letters):
 
 
 def graph_bfs(graph, start):
-    """Breadth-first search (uses a queue)."""
+
     visited, order, queue = {start}, [], deque([start])
     while queue:
         v = queue.popleft()
@@ -122,9 +108,6 @@ def graph_dfs(graph, start):
     return order
 
 
-# ---------------------------------------------------------------
-# MAIN
-# ---------------------------------------------------------------
 if __name__ == "__main__":
     name = "MARTINEZ"  # change this to use a different last name
     letters = list(name)
